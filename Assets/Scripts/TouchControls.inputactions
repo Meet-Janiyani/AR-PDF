@@ -1,0 +1,34 @@
+{
+    "name": "TouchControls",
+    "maps": [
+        {
+            "name": "TouchInput",
+            "id": "9dd01c63-0d65-4d9c-b46f-a54e7949c9c6",
+            "actions": [
+                {
+                    "name": "Touch",
+                    "type": "Value",
+                    "id": "d0c90933-6e61-470e-944b-326ddbe6f8a1",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "6fadc118-d8d8-483e-ad9f-5769a05ba920",
+                    "path": "<Touchscreen>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Touch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
