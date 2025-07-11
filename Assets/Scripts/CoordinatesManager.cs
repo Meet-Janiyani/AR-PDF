@@ -67,10 +67,12 @@ public class CoordinatesManager : MonoBehaviour
         //string featur3_string = "z";
 
         APIRequest data = new APIRequest();
-        data.items = new List<string>();
-        data.items.Add(featur1_string);
-        data.items.Add(featur2_string);
-        data.items.Add((featur3_string));
+        data.items = new List<string>
+        {
+            featur1_string.Trim().ToLower(),
+            featur2_string.Trim().ToLower(),
+            featur3_string.Trim().ToLower()
+        };
         data.x_min = -5; data.x_max=5;
 
         
@@ -78,8 +80,11 @@ public class CoordinatesManager : MonoBehaviour
         byte[] bodyRaw=Encoding.UTF8.GetBytes(jsonData);
 
         // "https://ar-data-visualization-pi.vercel.app/lattice/"
+        // "https://ar-data-visualization-mhm4410wv-mjaniyani96-gmailcoms-projects.vercel.app/lattice/"
+        //"https://ar-data.vercel.app/lattice/"
 
-        using (UnityWebRequest request= new UnityWebRequest("https://ar-data-visualization-pi.vercel.app/lattice/", "POST"))
+        //http://127.0.0.1:8000/lattice/
+        using (UnityWebRequest request= new UnityWebRequest("https://ar-data.vercel.app/lattice/", "POST"))
         {
             request.uploadHandler=new UploadHandlerRaw(bodyRaw);
             request.downloadHandler = new DownloadHandlerBuffer();
@@ -199,6 +204,14 @@ public class CoordinatesManager : MonoBehaviour
                 else if (n == 3)
                 {
                     StartCoroutine(GenerateCylindersAndCoordinates(x_coordinates,y_coordinates,z_coordinates,featur1_string,featur2_string,featur3_string));
+                    X.SetActive(true);
+                    X.GetComponentInChildren<TMP_Text>().text = featur1_string;
+
+                    Y.SetActive(true);
+                    Y.GetComponentInChildren<TMP_Text>().text = featur2_string;
+
+                    Z.SetActive(true);
+                    Z.GetComponentInChildren<TMP_Text>().text = featur3_string;
                 }
                 //debug_txt.text = "Completed";
             }
@@ -361,15 +374,7 @@ public class CoordinatesManager : MonoBehaviour
             }
         }
 
-        // set axis labels
-        X.SetActive(true);
-        X.GetComponentInChildren<TMP_Text>().text = featur1_string;
 
-        Y.SetActive(true);
-        Y.GetComponentInChildren<TMP_Text>().text = featur2_string;
-
-        Z.SetActive(true);
-        Z.GetComponentInChildren<TMP_Text>().text = featur3_string;
     }
 
 
